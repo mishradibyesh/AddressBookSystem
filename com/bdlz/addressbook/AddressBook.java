@@ -5,11 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
-	static ContactDetails person ;
-	static List<ContactDetails> contactDetailsList = new ArrayList<>();
+	/*
+   Declaring The Add Contact Method
+   And Entering The Contact Details By Using Scanner Class
+   And Printing The Contact Details Of Person
+	 */
 
-	public static void addNewContact() {
-		Scanner scanner = new Scanner(System.in);
+	ContactDetails person = new ContactDetails();
+	List<ContactDetails> contactDetailsList = new ArrayList<>();
+	Scanner scanner = new Scanner(System.in);
+	public void addContact() {
 		System.out.println("Enter First Name : ");
 		String firstName = scanner.next();
 		System.out.println("Enter Last Name : ");
@@ -30,8 +35,26 @@ public class AddressBook {
 		contactDetailsList.add(person);
 		printContact();
 	}
-	// method to print 
-	public static void printContact() {
+
+	/*
+    Declaring The Edit Contact Method
+    TO Edit The Details Of Contact
+    The Details Of Contact Edit By Using FirstName
+    If First Name Is Match The Contact Will Edit
+	 */
+
+	public void editContact() {
+		System.out.println("Enter the first name of person to edit contact");
+		String firstName = scanner.next();
+		if (firstName.equalsIgnoreCase(person.getFirstName())) {
+			contactDetailsList.remove(contactDetailsList.indexOf(person)); 
+			addContact();
+		} else {
+			System.out.println("The Entered First Name Is Not Match");
+			editContact();
+		}
+	}
+	public void printContact() {
 		for (int i = 0; i < contactDetailsList.size(); i++) {
 			person = contactDetailsList.get(i);
 			System.out.println("Contact Details");
@@ -43,10 +66,5 @@ public class AddressBook {
 					+ "MobileNumber : " + person.getMobileNo()  + "\n"
 					+ "EmailId      : " + person.getEmailId()   + "\n");
 		}
-	}
-
-	//main method
-	public static void main(String[] args) {
-		addNewContact();
 	}
 }
