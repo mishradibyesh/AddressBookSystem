@@ -47,11 +47,25 @@ public class AddressBook {
 		System.out.println("Enter the first name of person to edit contact");
 		String firstName = scanner.next();
 		if (firstName.equalsIgnoreCase(person.getFirstName())) {
+
+			//removing the existing contact which is going to be changed using index
 			contactDetailsList.remove(contactDetailsList.indexOf(person)); 
 			addContact();
 		} else {
 			System.out.println("The Entered First Name Is Not Match");
 			editContact();
+		}
+	}
+
+	public void deleteContact() {
+		System.out.println("Enter the first name of person to delete contact");
+		String deleteName = scanner.next();
+		if (deleteName.equalsIgnoreCase(person.getFirstName())) {
+			System.out.println("Deleted " + person.getFirstName() + " details");
+			person = null;
+		} else {
+			System.out.println("The Entered First Name Is not Matching");
+			deleteContact();
 		}
 	}
 	public void printContact() {
