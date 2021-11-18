@@ -1,9 +1,11 @@
 package com.bdlz.addressbook;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 	/*
@@ -42,8 +44,6 @@ public class AddressBook {
 		if(hashmap.containsKey(newContact) ) {
 
 			writeContact(newContact);
-
-			System.out.println(hashmap.get(newContact));
 		}
 		else {
 			System.out.println("this addressBook is not exist");
@@ -163,6 +163,37 @@ public class AddressBook {
 		}
 
 	}
+	//method to seacrh by state name
+	public void searchByState() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of Address book to delete the contact.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+
+			System.out.println("Enter State: ");
+			String state = scanner.next();
+			List<ContactDetails> searchData = hashmap.get(newContact).stream().filter(contactInfo -> contactInfo.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+			for (ContactDetails contact : searchData) {
+				System.out.println("Search result: " + contact);
+			}
+		}
+	}
+	//method to seacrh by state name
+	public void searchByCity() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of Address book to delete the contact.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+
+			System.out.println("Enter State: ");
+			String city = scanner.next();
+			List<ContactDetails> searchData = hashmap.get(newContact).stream().filter(contactInfo -> contactInfo.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+			for (ContactDetails contact : searchData) {
+				System.out.println("Search result: " + contact);
+			}
+		}
+	}
+	//method to print contacts in provided addressbook
 	public void printContact() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to print the contact.");
@@ -184,4 +215,5 @@ public class AddressBook {
 		}
 
 	}
+
 }
