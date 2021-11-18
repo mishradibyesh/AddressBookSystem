@@ -10,7 +10,7 @@ public class AddressBookMain {
 			System.out.println("Enter \n 0 To add The AddressBook \n 1 To add The contact \n 2 To edit the contact \n 3 To delete the contact "
 					+ " \n 4 To print the contact  \n 5 To search by state \n 6 To search by city \n 7 to count by state or city"
 					+ " \n 8 for sort by name \n 9 to sort by state city and zip \n 10 to write the contacts in file \n 11  to write into csv file "
-					+ " \n 12 to exit");
+					+ " \n 12 to  write into json file \n 13 to exit");
 			Scanner scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
 			switch (choice) {
@@ -64,6 +64,9 @@ public class AddressBookMain {
 				addressBook.writeToCSV();
 				break;
 			case 12:
+				addressBook.writeToJSON();
+				break;
+			case 13:
 				System.out.println("Exit successfully!");
 				System.exit(0);
 				break;

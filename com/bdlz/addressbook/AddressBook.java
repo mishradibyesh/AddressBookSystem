@@ -293,6 +293,28 @@ public class AddressBook {
 		}
 
 	}
+	public void writeToJSON() throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of Address book to print the contact.");
+		String contact = scanner.nextLine();
+		if(hashmap.containsKey(contact) ) {
+			FileWriter fw = new FileWriter("data2.json");
+			for(int i=0;i<hashmap.get(contact).size();i++) {
+				fw.write(
+						"first name :"+ hashmap.get(contact).get(i).getFirstName() + 
+						"last name :" + hashmap.get(contact).get(i).getLastName() + 
+						"address :" + hashmap.get(contact).get(i).getAddress() +
+						"city :" + hashmap.get(contact).get(i).getCity() +
+						"state :" + hashmap.get(contact).get(i).getState() + 
+						"zip :" + hashmap.get(contact).get(i).getZipCode() + 
+						"mobike :" + hashmap.get(contact).get(i).getMobileNo() +
+						"email :" + hashmap.get(contact).get(i).getEmailId()+"\n");
+			}
+			fw.close();
+		}
+		System.out.println("File Writing to JSON is now Stopped");
+
+	}
 	public void writeToCSV() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to print the contact.");
@@ -301,7 +323,7 @@ public class AddressBook {
 			FileWriter fw = new FileWriter("data2.csv");
 			for(int i=0;i<hashmap.get(contact).size();i++) {
 				fw.write(
-						      hashmap.get(contact).get(i).getFirstName() + 
+						hashmap.get(contact).get(i).getFirstName() + 
 						"," + hashmap.get(contact).get(i).getLastName() + 
 						"," + hashmap.get(contact).get(i).getAddress() +
 						"," + hashmap.get(contact).get(i).getCity() +
