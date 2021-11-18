@@ -166,7 +166,7 @@ public class AddressBook {
 	//method to seacrh by state name
 	public void searchByState() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter the name of Address book to delete the contact.");
+		System.out.println("Enter the name of state to search contact.");
 		String newContact = scanner.nextLine();
 		if(hashmap.containsKey(newContact) ) {
 
@@ -178,14 +178,15 @@ public class AddressBook {
 			}
 		}
 	}
-	//method to seacrh by state name
+
+	//method to seacrh by city name
 	public void searchByCity() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter the name of Address book to delete the contact.");
+		System.out.println("Enter the name of city  to search the contact in the addressbook.");
 		String newContact = scanner.nextLine();
 		if(hashmap.containsKey(newContact) ) {
 
-			System.out.println("Enter State: ");
+			System.out.println("Enter city: ");
 			String city = scanner.next();
 			List<ContactDetails> searchData = hashmap.get(newContact).stream().filter(contactInfo -> contactInfo.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
 			for (ContactDetails contact : searchData) {
