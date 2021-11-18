@@ -12,9 +12,8 @@ public class AddressBook {
 	 */
 
 	HashMap <String , ArrayList<ContactDetails>> hashmap = new HashMap();
-	Scanner scanner = new Scanner(System.in);
-
 	public void addAddressBook() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of the addressBook");
 		String bookName = scanner.nextLine();
 
@@ -34,11 +33,17 @@ public class AddressBook {
 			addAddressBook();
 		}
 	}
+
+	// method to write contact and check if contact already exists
 	public void addContact() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to add the contact.");
 		String newContact = scanner.nextLine();
-		if(hashmap.containsKey(newContact)) {
-			writeContact(hashmap.get(newContact));
+		if(hashmap.containsKey(newContact) ) {
+
+			writeContact(newContact);
+
+			System.out.println(hashmap.get(newContact));
 		}
 		else {
 			System.out.println("this addressBook is not exist");
@@ -46,26 +51,48 @@ public class AddressBook {
 
 	}
 	// method to write the contact details
-	public void writeContact(ArrayList list) {
+	public void writeContact(String newContact) {
+		Scanner scanner = new Scanner(System.in);
 		ContactDetails contact = new ContactDetails();
 		System.out.println("Enter First Name : ");
 		String firstName = scanner.next();
-		System.out.println("Enter Last Name : ");
-		String lastName = scanner.next();
-		System.out.println("Enter Address : ");
-		String address = scanner.next();
-		System.out.println("Enter City : ");
-		String city = scanner.next();
-		System.out.println("Enter State : ");
-		String state = scanner.next();
-		System.out.println("Enter ZipCode : ");
-		int zipCode = scanner.nextInt();
-		System.out.println("Enter Mobile Number : ");
-		long mobileNumber = scanner.nextLong();
-		System.out.println("Enter EmailId : ");
-		String emailId = scanner.next();
-		contact = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
-		list.add(contact);
+
+		if(duplicateCheck(newContact , firstName ) == true) {    
+
+			System.out.println("Enter Last Name : ");
+			String lastName = scanner.next();
+			System.out.println("Enter Address : ");
+			String address = scanner.next();
+			System.out.println("Enter City : ");
+			String city = scanner.next();
+			System.out.println("Enter State : ");
+			String state = scanner.next();
+			System.out.println("Enter ZipCode : ");
+			int zipCode = scanner.nextInt();
+			System.out.println("Enter Mobile Number : ");
+			long mobileNumber = scanner.nextLong();
+			System.out.println("Enter EmailId : ");
+			String emailId = scanner.next();
+			contact = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
+			hashmap.get(newContact).add(contact);
+		}
+		else
+		{
+			System.out.println("please try another");
+			writeContact(newContact);
+		}
+	}
+
+	//method to check duplicate contact name
+	public boolean duplicateCheck(String newContact , String firstName) {
+		for ( int i=0 ; i < hashmap.get(newContact).size(); i++) {
+			String name = hashmap.get(newContact).get(i).getFirstName();
+			if (name.equals(firstName)) {
+				System.out.println("this contact name is already present! ");
+				return false;
+			}
+		}
+		return true;
 
 	}
 
@@ -77,8 +104,8 @@ public class AddressBook {
 	 */
 
 	public void editContact() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to edit the contact.");
-		scanner.nextLine();
 		String newContact = scanner.nextLine();
 		if(hashmap.containsKey(newContact)) {
 			System.out.println("Enter the first name of person to edit contact");
@@ -87,7 +114,7 @@ public class AddressBook {
 			for (int i = 0; i < hashmap.get(newContact).size(); i++) {
 				String name = hashmap.get(newContact).get(i).getFirstName();
 				if (name.equalsIgnoreCase(editName)) {
-					writeContact(hashmap.get(newContact));
+					writeContact(newContact);
 					edited = true;
 					break;
 				}
@@ -111,8 +138,8 @@ public class AddressBook {
 	 */
 
 	public void deleteContact() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to delete the contact.");
-		scanner.nextLine();
 		String newContact = scanner.nextLine();
 		if(hashmap.containsKey(newContact)) {
 			System.out.println("Enter the first name of person to delete contact");
@@ -137,8 +164,8 @@ public class AddressBook {
 
 	}
 	public void printContact() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to print the contact.");
-		scanner.nextLine();
 		String contact = scanner.nextLine();
 		if(hashmap.get(contact).isEmpty()) {
 			System.out.println("the entered addressbook is empty!");
