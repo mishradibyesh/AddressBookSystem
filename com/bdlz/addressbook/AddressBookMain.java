@@ -7,7 +7,8 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		while (true) {
 			System.out.println("Enter \n 0 To add The AddressBook \n 1 To add The contact \n 2 To edit the contact \n 3 To delete the contact "
-					+ " \n 4 To print the contact  \n 5 To search by state \n 6 To search by city \n 7 to count by state or city \n 8 for exit");
+					+ " \n 4 To print the contact  \n 5 To search by state \n 6 To search by city \n 7 to count by state or city"
+					+ " \n 8 for sort by name \n 9 for exit");
 			Scanner scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
 			switch (choice) {
@@ -49,6 +50,9 @@ public class AddressBookMain {
 				addressBook.countByState(state);
 				break;
 			case 8:
+				addressBook.sortByName();
+				break;
+			case 9:
 				System.out.println("Exit successfully!");
 				System.exit(0);
 				break;

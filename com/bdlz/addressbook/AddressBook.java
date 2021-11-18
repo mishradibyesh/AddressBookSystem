@@ -205,7 +205,7 @@ public class AddressBook {
 			System.out.println("Total Number of Contact from '" + cityName + "' city is " + count);
 		}
 	}
-	
+
 	//count contact by state name
 	public void countByState(String stateName) {
 		Scanner scanner = new Scanner(System.in);
@@ -216,6 +216,15 @@ public class AddressBook {
 			System.out.println("Total Number of Contact from '" + stateName + "' state is " + count);
 		}
 	}
+	public void sortByName() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the addressbook.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+			hashmap.get(newContact).stream().sorted((g1, g2) -> ((String)g1.getFirstName()).compareTo(g2.getFirstName())).forEach(contact -> System.out.println(contact));
+		}
+	}
+
 
 	//method to print contacts in provided addressbook
 	public void printContact() {
