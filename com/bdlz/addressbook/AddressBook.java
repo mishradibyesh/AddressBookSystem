@@ -1,5 +1,7 @@
 package com.bdlz.addressbook;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ public class AddressBook {
 	 * 
 	 */
 
+	static final String  FILE_PATH = "data.txt";
 	HashMap <String , ArrayList<ContactDetails>> hashmap = new HashMap();
 	public void addAddressBook() {
 		Scanner scanner = new Scanner(System.in);
@@ -216,6 +219,7 @@ public class AddressBook {
 			System.out.println("Total Number of Contact from '" + stateName + "' state is " + count);
 		}
 	}
+	//method to sort by state city or zip
 	public void sortBy() {
 		System.out.println("press \n 1 to sort b city \n 2 to sort by state \n 3 to sort by zip");
 		Scanner scanner = new Scanner(System.in);
@@ -232,7 +236,7 @@ public class AddressBook {
 			break;
 		}
 	}
-	
+
 	public void sortByCity() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of the addressbook.");
@@ -289,5 +293,26 @@ public class AddressBook {
 		}
 
 	}
+	public void writeToFile() throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of Address book to print the contact.");
+		String contact = scanner.nextLine();
+		if(hashmap.containsKey(contact) ) {
+			FileWriter fw = new FileWriter(FILE_PATH);
+			for(int i=0;i<hashmap.get(contact).size();i++) {
+				fw.write(" contact "+ i
+						+ "\n \n First Name :" + hashmap.get(contact).get(i).getFirstName() + 
+						", \n Last Name :" + hashmap.get(contact).get(i).getLastName() + 
+						", \n Address : " + hashmap.get(contact).get(i).getAddress() +
+						", \n City : " + hashmap.get(contact).get(i).getCity() +
+						", \n State : " + hashmap.get(contact).get(i).getState() + 
+						", \n ZipCode : " + hashmap.get(contact).get(i).getZipCode() + 
+						", \n Mobile Number : " + hashmap.get(contact).get(i).getMobileNo() +
+						", \n EmailID : " + hashmap.get(contact).get(i).getEmailId()+"\n\n");
 
+			}
+			fw.close();
+			System.out.println("File Writing Stopped");
+		}
+	}
 }

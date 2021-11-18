@@ -1,14 +1,15 @@
 package com.bdlz.addressbook;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class AddressBookMain {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		AddressBook addressBook = new AddressBook();
 		while (true) {
 			System.out.println("Enter \n 0 To add The AddressBook \n 1 To add The contact \n 2 To edit the contact \n 3 To delete the contact "
 					+ " \n 4 To print the contact  \n 5 To search by state \n 6 To search by city \n 7 to count by state or city"
-					+ " \n 8 for sort by name \n 9 to sort by state city and zip \n 10 for exit");
+					+ " \n 8 for sort by name \n 9 to sort by state city and zip \n 10 to write the contacts in file \n 11 to exit");
 			Scanner scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
 			switch (choice) {
@@ -56,6 +57,9 @@ public class AddressBookMain {
 				addressBook.sortBy();
 				break;
 			case 10:
+				addressBook.writeToFile();
+				break;
+			case 11:
 				System.out.println("Exit successfully!");
 				System.exit(0);
 				break;
