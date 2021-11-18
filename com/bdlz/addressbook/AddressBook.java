@@ -293,6 +293,28 @@ public class AddressBook {
 		}
 
 	}
+	public void writeToCSV() throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of Address book to print the contact.");
+		String contact = scanner.nextLine();
+		if(hashmap.containsKey(contact) ) {
+			FileWriter fw = new FileWriter("data2.csv");
+			for(int i=0;i<hashmap.get(contact).size();i++) {
+				fw.write(
+						      hashmap.get(contact).get(i).getFirstName() + 
+						"," + hashmap.get(contact).get(i).getLastName() + 
+						"," + hashmap.get(contact).get(i).getAddress() +
+						"," + hashmap.get(contact).get(i).getCity() +
+						"," + hashmap.get(contact).get(i).getState() + 
+						"," + hashmap.get(contact).get(i).getZipCode() + 
+						"," + hashmap.get(contact).get(i).getMobileNo() +
+						"," + hashmap.get(contact).get(i).getEmailId()+"\n");
+			}
+			fw.close();
+		}
+		System.out.println("File Writing to csv is now Stopped");
+	}
+
 	public void writeToFile() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to print the contact.");
