@@ -194,6 +194,29 @@ public class AddressBook {
 			}
 		}
 	}
+
+	//count contact by city name
+	public void countByCity(String cityName) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the addressbook.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+			long count = hashmap.get(newContact).stream().filter(g -> g.getCity().equalsIgnoreCase(cityName)).count();
+			System.out.println("Total Number of Contact from '" + cityName + "' city is " + count);
+		}
+	}
+	
+	//count contact by state name
+	public void countByState(String stateName) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the addressbook.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+			long count = hashmap.get(newContact).stream().filter(g -> g.getState().equalsIgnoreCase(stateName)).count();
+			System.out.println("Total Number of Contact from '" + stateName + "' state is " + count);
+		}
+	}
+
 	//method to print contacts in provided addressbook
 	public void printContact() {
 		Scanner scanner = new Scanner(System.in);

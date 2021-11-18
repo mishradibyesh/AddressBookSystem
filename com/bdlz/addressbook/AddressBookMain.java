@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class AddressBookMain {
 	public static void main(String[] args) {
 		AddressBook addressBook = new AddressBook();
-		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println("Enter \n 0 To add The AddressBook \n 1 To add The contact \n 2 To edit the contact \n 3 To delete the contact  \n 4 To print the contact  \n 5 To search by state \n 6 To search by city \n 7 To Exit");
+			System.out.println("Enter \n 0 To add The AddressBook \n 1 To add The contact \n 2 To edit the contact \n 3 To delete the contact "
+					+ " \n 4 To print the contact  \n 5 To search by state \n 6 To search by city \n 7 to count by state or city \n 8 for exit");
+			Scanner scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 0:
@@ -32,6 +33,22 @@ public class AddressBookMain {
 				addressBook.searchByCity();
 				break;
 			case 7:
+				Scanner scanner1 = new Scanner(System.in);
+				System.out.println("press 1 to count by city /n press 2 to count bt state ");
+				int selection = scanner1.nextInt();
+				if(selection == 1) {
+					System.out.println("enter City");
+					scanner1.nextLine();
+					String city = scanner1.nextLine();
+					addressBook.countByCity(city);
+				}
+				else
+					System.out.println("enter state");
+				scanner1.nextLine();
+				String state = scanner.nextLine();
+				addressBook.countByState(state);
+				break;
+			case 8:
 				System.out.println("Exit successfully!");
 				System.exit(0);
 				break;
