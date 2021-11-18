@@ -216,6 +216,47 @@ public class AddressBook {
 			System.out.println("Total Number of Contact from '" + stateName + "' state is " + count);
 		}
 	}
+	public void sortBy() {
+		System.out.println("press \n 1 to sort b city \n 2 to sort by state \n 3 to sort by zip");
+		Scanner scanner = new Scanner(System.in);
+		int choice = scanner.nextInt();
+		switch(choice) {
+		case 1 :
+			sortByCity();
+			break;
+		case 2 :
+			sortByState();
+			break;
+		case 3 :
+			sortByZip();
+			break;
+		}
+	}
+	
+	public void sortByCity() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the addressbook.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+			hashmap.get(newContact).stream().sorted((g1, g2) -> ((String)g1.getCity()).compareTo(g2.getCity())).forEach(contact -> System.out.println(contact));
+		}	
+	}
+	public void sortByState() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the addressbook.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+			hashmap.get(newContact).stream().sorted((g1, g2) -> ((String)g1.getState()).compareTo(g2.getState())).forEach(contact -> System.out.println(contact));
+		}	
+	}
+	public void sortByZip() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the addressbook.");
+		String newContact = scanner.nextLine();
+		if(hashmap.containsKey(newContact) ) {
+			hashmap.get(newContact).stream().sorted((g1, g2) -> ((Integer)g1.getZipCode()).compareTo(g2.getZipCode())).forEach(contact -> System.out.println(contact));
+		}	
+	}
 	public void sortByName() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of the addressbook.");
