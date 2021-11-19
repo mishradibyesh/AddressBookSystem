@@ -349,7 +349,7 @@ public class AddressBook {
 	}
 	public void writeToFile() throws IOException {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter the name of Address book to print the contact.");
+		System.out.println("Enter the name of Address Book to print the contact.");
 		String contact = scanner.nextLine();
 		if(hashmap.containsKey(contact) ) {
 			FileWriter fw = new FileWriter(FILE_PATH);
