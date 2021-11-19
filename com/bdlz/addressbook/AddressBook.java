@@ -1,5 +1,7 @@
 package com.bdlz.addressbook;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -293,6 +295,8 @@ public class AddressBook {
 		}
 
 	}
+
+	//method to write into JSON file
 	public void writeToJSON() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to print the contact.");
@@ -337,6 +341,12 @@ public class AddressBook {
 		System.out.println("File Writing to csv is now Stopped");
 	}
 
+	public void readCSVFile(String filePath) throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File(filePath));
+		while(scanner.hasNext()) {
+			System.out.println(scanner.next().toString());
+		}
+	}
 	public void writeToFile() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name of Address book to print the contact.");
